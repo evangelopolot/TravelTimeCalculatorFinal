@@ -2,7 +2,10 @@ package uk.gov.dwp;
 
 public class TravelTimeCalculator {
     public String getTravelTime(String fromLocation, String toLocation) {
-        return "00:00";
+        if(fromLocation.equals(toLocation)){
+            return "00:00";
+        }
+        return "";
     }
 
     public String getTravelLocations() {
