@@ -35,6 +35,7 @@ public class TravelTimeCalculatorTest {
         calculator.setTravelTime("Leads","Blackpool", "1:39");
         String result = calculator.getTravelTime("Leeds", "Blackpool");
         assertEquals("1:39", result, "Should add and return travel time");
+
     }
 
     @ParameterizedTest

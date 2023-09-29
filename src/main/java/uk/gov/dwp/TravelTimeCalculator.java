@@ -14,6 +14,7 @@ public class TravelTimeCalculator {
             return "00:00";
         }
         return travelTimes.get(fromLocation).get(toLocation);
+
     }
 
     public void setTravelTime(String fromLocation, String toLocation, String travelTime) {
