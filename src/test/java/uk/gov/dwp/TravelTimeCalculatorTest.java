@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import static org.junit.Assert.assertEquals;
 
 public class TravelTimeCalculatorTest {
+
     @Test
     @DisplayName("When given from and to locations which are the same, return zero in time")
     public void testGetTravelTimeReturnsZeroTimeWhenBothLocationsAreTheSame(){
@@ -20,6 +21,15 @@ public class TravelTimeCalculatorTest {
         TravelTimeCalculator calculator = new TravelTimeCalculator();
         String result = calculator.getTravelLocations();
         assertEquals("Blackpool,Leeds,London,Manchester,Newcastle", result, "Should return a list of recognised location");
+    }
+
+    @Test
+    @DisplayName("When given an unrecognised location, add the location to recognised list")
+    public void testAddLocationUpdateRecognisedLocationsList(){
+        TravelTimeCalculator calculator = new TravelTimeCalculator();
+        calculator.addLocation("Lancaster");
+        String result = calculator.getTravelLocations();
+        assertEquals("Blackpool,Lancaster,Leeds,London,Manchester,Newcastle", result,"Should return updated recognised location list");
     }
 
 
