@@ -29,7 +29,11 @@ public class TravelTimeCalculator {
         if(!travelTimes.containsKey(fromLocation)){
             travelTimes.put(fromLocation,new HashMap<>());
         }
+        String formatedTime = formatTime(travelTime);
 
+        travelTimes.get(fromLocation).put(toLocation,formatedTime);
+    }
+    public String formatTime(String travelTime){
         String[] timeParts = travelTime.split(":");
         int hours = Integer.parseInt(timeParts[0]);
         int minutes = Integer.parseInt(timeParts[1]);
@@ -37,9 +41,7 @@ public class TravelTimeCalculator {
 
         int hoursFormat = time / 60;
         int minutesFormat = time % 60;
-        String formatedTime = String.format("%d:%02d", hoursFormat ,minutesFormat);
-
-        travelTimes.get(fromLocation).put(toLocation,formatedTime);
+        return String.format("%d:%02d", hoursFormat ,minutesFormat);
     }
 
     public void getTravelTimes(String fromLocation, String toLocation){
