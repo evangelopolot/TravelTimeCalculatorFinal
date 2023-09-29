@@ -30,6 +30,7 @@ public class TravelTimeCalculatorTest {
         calculator.setTravelTime("Blackpool", "Leeds", "1:39");
         String result = calculator.getTravelTime("Blackpool", "Leeds");
         assertEquals("1:39", result, "Should add and return the travel time");
+
     }
 
     @Test
