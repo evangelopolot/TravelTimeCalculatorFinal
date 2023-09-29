@@ -16,6 +16,15 @@ public class TravelTimeCalculatorTest {
     }
 
     @Test
+    @DisplayName("Given a not recognised location add the dictionary of locations")
+    public void givenUnrecognisedLocationAddItToTheDictionaryLocation() {
+        TravelTimeCalculator calculator = new TravelTimeCalculator();
+        calculator.setTravelTime("Blackpool", "Leeds", "1:39");
+        String result = calculator.getTravelTime("Blackpool", "Leeds");
+        assertEquals("1:39", result, "Should add the travel time");
+    }
+
+    @Test
     @DisplayName("When getTravelLocations is called it returns a list of recognised locations in alphabetical order")
     public void testGetTravelLocationsReturnsListOfRecognisedLocations(){
         TravelTimeCalculator calculator = new TravelTimeCalculator();
