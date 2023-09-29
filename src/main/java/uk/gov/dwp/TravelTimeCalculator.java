@@ -3,8 +3,7 @@ package uk.gov.dwp;
 import java.util.*;
 
 public class TravelTimeCalculator {
-    private Map<String, Map<String, String>> travelTimes;
-    private Set<String> recognisedLocations;
+    private final Map<String, Map<String, String>> travelTimes;
 
     public TravelTimeCalculator(){
         travelTimes = new HashMap<>();
@@ -31,16 +30,6 @@ public class TravelTimeCalculator {
         travelTimes.get(fromLocation).put(toLocation,time);
         travelTimes.get(toLocation).put(fromLocation, time);
     }
-    public String formatTime(String travelTime){
-        String[] timeParts = travelTime.split(":");
-        int hours = Integer.parseInt(timeParts[0]);
-        int minutes = Integer.parseInt(timeParts[1]);
-        int time = hours * 60 + minutes;
-
-        int hoursFormat = time / 60;
-        int minutesFormat = time % 60;
-        return String.format("%d:%02d", hoursFormat ,minutesFormat);
-    }
 
     public String getTravelLocations() {
 
@@ -56,15 +45,30 @@ public class TravelTimeCalculator {
         return locations.toString();
     }
 
-    private Set<String> getRecognisedLocations(){
-        return recognisedLocations;
+    public String getTravelDestinations(String location) {
+
+        StringBuilder locations = new StringBuilder();
+        List<String> locationsSorted = new ArrayList<>(travelTimes.get(location).keySet());
+        Collections.sort(locationsSorted);
+        locations.append(location).append(",");
+
+        for (String loc : locationsSorted){
+            locations.append(loc).append(",");
+        }
+
+        locations.setLength(locations.length() - 1);
+        return locations.toString();
     }
 
-    public String getTravelDestinations() {
-        return "";
+    public String formatTime(String travelTime){
+        String[] timeParts = travelTime.split(":");
+        int hours = Integer.parseInt(timeParts[0]);
+        int minutes = Integer.parseInt(timeParts[1]);
+        int time = hours * 60 + minutes;
+
+        int hoursFormat = time / 60;
+        int minutesFormat = time % 60;
+        return String.format("%d:%02d", hoursFormat ,minutesFormat);
     }
 
-    public void addLocation(String newLocation) {
-        recognisedLocations.add(newLocation);
-    }
 }

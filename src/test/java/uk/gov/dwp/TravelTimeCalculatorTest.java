@@ -39,11 +39,19 @@ public class TravelTimeCalculatorTest {
 
     @ParameterizedTest
     @CsvSource({"'Blackpool','Leeds','1:39', 'Blackpool,Leeds'", "'London', 'Manchester', '1:00', 'London,Manchester'"})
-    @DisplayName("When given locations, return the list of recognised locations.")
-    public void testGetTravelLocationsReturnsListOfRecognisedLocations(String location, String destination, String time, String expected){
+    @DisplayName("When given locations, return the list of recognised locations in alphabetical order.")
+    public void givenRecognisedLocationsReturnListOfRecognisedLocationsInOrder(String location, String destination, String time, String expected){
         calculator.setTravelTime(location, destination, time);
         String result = calculator.getTravelLocations();
-        assertEquals(expected, result, "Should return a list of recognised location");
+        assertEquals(expected, result, "Should return a list of recognised location in alphabetical order.");
+    }
+
+    @Test
+    @DisplayName("When given destinations, return the list of recognised destinations in alphabetical order")
+    public void givenRecognisedDestinationsReturnTheListOfRecognisedDestinationsInOrder () {
+        calculator.setTravelTime("Manchester", "Newcastle", "2:28");
+        String result = calculator.getTravelDestinations("Manchester");
+        assertEquals("Manchester,Newcastle", result, "Should return recognised destinations in alphabetical order");
     }
 
 
