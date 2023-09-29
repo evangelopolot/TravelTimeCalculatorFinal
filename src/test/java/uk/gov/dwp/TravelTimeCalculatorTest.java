@@ -11,7 +11,16 @@ public class TravelTimeCalculatorTest {
     public void testGetTravelTimeReturnsZeroTimeWhenBothLocationsAreTheSame(){
         TravelTimeCalculator calculator = new TravelTimeCalculator();
         String result = calculator.getTravelTime("Blackpool", "Blackpool");
-        assertEquals("Should return zero in format 'hh:mm'","00:00", result);
+        assertEquals("00:00", result, "Should return zero in format 'hh:mm'");
     }
+
+    @Test
+    @DisplayName("When getTravelLocations is called it returns a list of recognised locations in alphabetical order")
+    public void testGetTravelLocationsReturnsListOfRecognisedLocations(){
+        TravelTimeCalculator calculator = new TravelTimeCalculator();
+        String result = calculator.getTravelLocations();
+        assertEquals("Blackpool,Leeds,London,Manchester,Newcastle", result, "Should return a list of recognised location");
+    }
+
 
 }
