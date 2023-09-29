@@ -8,16 +8,9 @@ public class TravelTimeCalculator {
 
     public TravelTimeCalculator(){
         travelTimes = new HashMap<>();
-        recognisedLocations = new HashSet<>();
-        recognisedLocations.add("Blackpool");
-        recognisedLocations.add("Manchester");
-        recognisedLocations.add("Leeds");
-        recognisedLocations.add("London");
-        recognisedLocations.add("Newcastle");
     }
 
     public String getTravelTime(String fromLocation, String toLocation) {
-        String travelTime = "";
         if(fromLocation.equals(toLocation)){
             return "00:00";
         }
@@ -52,7 +45,7 @@ public class TravelTimeCalculator {
     public String getTravelLocations() {
 
         StringBuilder locations = new StringBuilder();
-        List<String> locationsSorted = new ArrayList<>(getRecognisedLocations());
+        List<String> locationsSorted = new ArrayList<>(travelTimes.keySet());
         Collections.sort(locationsSorted);
 
         for (String location : locationsSorted){

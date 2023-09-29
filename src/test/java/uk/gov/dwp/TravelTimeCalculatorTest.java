@@ -37,19 +37,13 @@ public class TravelTimeCalculatorTest {
         assertEquals("1:39", result, "Should add and return travel time");
     }
 
-    @Test
-    @DisplayName("When getTravelLocations is called it returns a list of recognised locations in alphabetical order")
-    public void testGetTravelLocationsReturnsListOfRecognisedLocations(){
+    @ParameterizedTest
+    @CsvSource({"'Blackpool','Leeds','1:39', 'Blackpool,Leeds'", "'London', 'Manchester', '1:00', 'London,Manchester'"})
+    @DisplayName("When given locations, return the list of recognised locations.")
+    public void testGetTravelLocationsReturnsListOfRecognisedLocations(String location, String destination, String time, String expected){
+        calculator.setTravelTime(location, destination, time);
         String result = calculator.getTravelLocations();
-        assertEquals("Blackpool,Leeds,London,Manchester,Newcastle", result, "Should return a list of recognised location");
-    }
-
-    @Test
-    @DisplayName("When given an unrecognised location, add the location to recognised list")
-    public void testAddLocationUpdateRecognisedLocationsList(){
-        calculator.addLocation("Lancaster");
-        String result = calculator.getTravelLocations();
-        assertEquals("Blackpool,Lancaster,Leeds,London,Manchester,Newcastle", result,"Should return updated recognised location list");
+        assertEquals(expected, result, "Should return a list of recognised location");
     }
 
 
